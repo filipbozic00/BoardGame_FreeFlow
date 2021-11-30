@@ -5,6 +5,7 @@ buildscript {
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
+        jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         google()
     }
@@ -32,13 +33,16 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
+        jcenter()
         google()
         gradlePluginPortal()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
     }
 }
-
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
 project(":desktop") {
     apply plugin: "java-library"
 

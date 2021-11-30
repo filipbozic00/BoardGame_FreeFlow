@@ -1,0 +1,41 @@
+
+gameplay.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+black
+  rotate: false
+  xy: 2, 406
+  size: 626, 310
+  orig: 626, 310
+  offset: 0, 0
+  index: -1
+blue
+  rotate: false
+  xy: 2, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+green
+  rotate: false
+  xy: 630, 516
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+red
+  rotate: false
+  xy: 2, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+yellow
+  rotate: false
+  xy: 204, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
