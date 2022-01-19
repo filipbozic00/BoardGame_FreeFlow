@@ -3,6 +3,7 @@ package com.mygdx.game.freeflow.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -19,6 +20,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.freeflow.MyGdxGame;
 import com.mygdx.game.freeflow.assets.AssetDescriptors;
 import com.mygdx.game.freeflow.assets.RegionNames;
+import com.mygdx.game.freeflow.common.GameManager;
 
 public class MenuScreen extends ScreenAdapter {
     private final MyGdxGame game;
@@ -26,13 +28,28 @@ public class MenuScreen extends ScreenAdapter {
 
     private Viewport viewport;
     private Stage stage;
+    private Music music;
 
     private Skin skin;
     private TextureAtlas gameplayAtlas;
+    GameManager gameManager = new GameManager();
+
 
     public MenuScreen(MyGdxGame game) {
         this.game = game;
         assetManager = game.getAssetManager();
+        music = Gdx.audio.newMusic(Gdx.files.internal("C:\\Users\\filip\\AndroidStudioProjects\\Free_flow\\android\\assets\\sounds\\arcade sound.wav"));
+
+
+        if (gameManager.getSoundB()) {
+            music.setLooping(true);
+            music.play();
+        }
+        if (!gameManager.getSoundB()) {
+
+            music.stop();
+        }
+
     }
     @Override
     public void show() {
@@ -67,6 +84,8 @@ public class MenuScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         stage.dispose();
+        music.dispose();
+
     }
 
     private Actor createUi() {
@@ -88,7 +107,7 @@ public class MenuScreen extends ScreenAdapter {
         playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //game.setScreen(new GameScreen(game));
+                game.setScreen(new GameScreen(game));
             }
         });
 
@@ -100,13 +119,13 @@ public class MenuScreen extends ScreenAdapter {
             }
         });
 
-        /*TextButton settingsButton = new TextButton("Settings", skin);
+        TextButton settingsButton = new TextButton("Settings", skin);
         settingsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new SettingsScreen(game));
             }
-        });*/
+        });
 
         TextButton quitButton = new TextButton("Quit", skin);
         quitButton.addListener(new ClickListener() {
@@ -125,7 +144,7 @@ public class MenuScreen extends ScreenAdapter {
         // buttonTable.add(introButton).padBottom(15).expandX().fillX().row();
         buttonTable.add(playButton).padBottom(15).expandX().fill().row();
         buttonTable.add(leaderboardButton).padBottom(15).fillX().row();
-        //buttonTable.add(settingsButton).padBottom(15).fillX().row();
+        buttonTable.add(settingsButton).padBottom(15).fillX().row();
         buttonTable.add(quitButton).fillX();
 
         buttonTable.center();

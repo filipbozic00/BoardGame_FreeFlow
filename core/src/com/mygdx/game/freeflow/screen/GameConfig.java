@@ -17,6 +17,8 @@ public class GameConfig {
     public static final float WORLD_WIDTH = 80f;    // world units
     public static final float WORLD_HEIGHT = 60f;   // world units
 
+    public static final float STAR_SIZE = 10f;
+
     private GameConfig() {
     }
 }
